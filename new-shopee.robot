@@ -6,9 +6,9 @@ Test Setup    เปิด Shopee ด้วย Google Chrome
 *** Variables ***
 ${URL}    https://shopee.co.th/(Pre-Order)-Xiaomi-iHealth-Blood-Pressure-Monitor-2-%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%94%E0%B8%B1%E0%B8%99-%E0%B8%A3%E0%B8%B8%E0%B9%88%E0%B8%99-2-i.8172430.1307643368
 # ${URL}    https://shopee.co.th/shopping_cart/?itemIds=1307643368&shopId=8172430
-${EMAIL}    ekkarat38806@gmail.com
-${PASSWORD}    Bigbigza2540.
-${TIME}      60s
+${EMAIL}    test.test@outlook.co.th
+${PASSWORD}    AllianzG4
+${TIME}      90s
 ${PRICE}    ฿11,160
 ${PRODUCT_AMOUNT}    1
 ${LOGISTIC_PRICE}    ฿50
@@ -76,7 +76,12 @@ ${TOTAL_PRICE}    ฿11,210
 
 กดปุ่ม สั่งสินค้า
     # Press Keys    //*[@id="main"]/div/div[2]/div[2]/div[3]/div[2]/div[7]/div[5]/button    RETURN
-    Click Button    xpath://button[@class="shopee-button-solid shopee-button-solid--primary "]
+    # Click Element    xpath://*[@id="main"]/div/div[2]/div[2]/div[3]/div[2]/div[7]/div[5]/button
+    
+    Set Window Size    1920    800
+    
+    
+    Click Element    //*[@id="main"]/div/div[2]/div[2]/div[3]/div[2]/div[7]/div[5]/button/span
 
 ตรวจสอบความถูกต้องของ ราคาสินค้าชนิดนี้
     Sleep    2s
@@ -105,8 +110,8 @@ ${TOTAL_PRICE}    ฿11,210
     Click Element    //div[@class="checkout-change-payment-method-button"]
 
 คลิกเลือก iBanking / Mobile 
-    Wait Until Page Contains Element    xpath://button[@class="product-variation product-variation--selected"]    20s
-    Click Link    xpath://button[@class="product-variation product-variation--selected"]
+    # Wait Until Page Contains Element    //*[@id="main"]/div/div[2]/div[3]/div[4]/div[1]/div/div[1]/div[2]/span[3]/button    20s
+    Click Element    //*[@id="main"]/div/div[2]/div[3]/div[4]/div[1]/div/div[1]/div[2]/span[3]/button
     # Click Button   button//*[@id="main"]/div/div[2]/div[3]/div[4]/div[1]/div/div[1]/div[2]/span[3]/button
 
 ตรวจสอบธนาคารว่าครบ 5 ธนาคาร  
@@ -117,23 +122,23 @@ ${TOTAL_PRICE}    ฿11,210
     Wait Until Page Contains Element    //img[@src="https://mall.shopee.co.th/static/images/img_bankth_bay.png"]          
 
 คลิกเลือก ธนาคารกรุงไทย
-    Wait Until Page Contains Element    //img[@src="https://shopee.co.th/static/images/img_bankth_ktb.png"]
-    Click Link    //img[@src="https://shopee.co.th/static/images/img_bankth_ktb.png"]   
+    # Wait Until Page Contains Element    //img[@src="https://shopee.co.th/static/images/img_bankth_ktb.png"]
+    Click Element    //img[@src="https://shopee.co.th/static/images/img_bankth_ktb.png"]  
+     Press Keys    None    ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW 
 
 ตรวจสอบความถูกต้องครั้งสุดท้าย
-    Wait Until Page Contains Element    class:_38DBn- _2wZvga _2ZumAb
-    Element Should Contain     class:_38DBn- _2wZvga _2ZumAb    ฿11,160
+    Wait Until Page Contains Element    //div[@class="_38DBn- _2wZvga _2ZumAb"]    10s 
+    Element Should Contain     //div[@class="_38DBn- _2wZvga _2ZumAb"]    ฿11,160
 
-    Wait Until Page Contains Element    class:_38DBn- _2wZvga _39ttyR
-    Element Should Contain     class:_38DBn- _2wZvga _39ttyR    ฿50
+    Wait Until Page Contains Element    //*[@id="main"]/div/div[2]/div[3]/div[4]/div[2]/div[4]    10s
+    Element Should Contain     //*[@id="main"]/div/div[2]/div[3]/div[4]/div[2]/div[4]    ฿50
 
-    Wait Until Page Contains Element    class:_38DBn- _34fUBg _2wZvga sfPrg9
-    Element Should Contain     class:_38DBn- _34fUBg _2wZvga sfPrg9    ฿11,210
+    Wait Until Page Contains Element    //*[@id="main"]/div/div[2]/div[3]/div[4]/div[2]/div[6]    10s
+    Element Should Contain     //*[@id="main"]/div/div[2]/div[3]/div[4]/div[2]/div[6]    ฿11,210
 
 
 คลิกสั่งสินค้า ครั้งสุดท้าย
-    Wait Until Page Contains Element    //button[@class="stardust-button stardust-button--primary stardust-button--large_22Ktrb"]
-    Click Element    //button[@class="stardust-button stardust-button--primary stardust-button--large _22Ktrb"]
+    Click Element    //*[@id="main"]/div/div[2]/div[3]/div[4]/div[2]/div[7]/button
 
-# ปิด Chrome
-#     Close Browser
+ปิด Chrome
+    Close Browser
